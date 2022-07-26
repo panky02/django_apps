@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Item
+from django.template import loader
 
 # Create your views here.
 def index(request):
     item_list = Item.objects.all()
-    return HttpResponse(item_list)
+    template = loader.get_template('food/index.html')
+    context ={'item_list':item_list} #for DB contents
+    return HttpResponse(template.render(context, request))
 
 def item(request):
     return HttpResponse("<h1> This ia an item.</h1>")

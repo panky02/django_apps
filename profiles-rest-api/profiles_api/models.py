@@ -15,7 +15,7 @@ class UserProfileManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, name=name)
 
-        user.set_password(password)#encrpts and set the password
+        user.set_password(password)#encrpts and then saves the password to db
         user.save(using=self._db)
 
         return user
